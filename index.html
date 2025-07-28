@@ -2,23 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Carta para mi Di 💌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Carta para mi Di 💌</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      position: relative;
-      overflow: hidden;
+    /* BODY sin overflow hidden para que pueda hacer scroll */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Quicksand', sans-serif;
+      background: #fff;
+      overflow-x: hidden;
     }
+
+    .container {
+      max-width: 600px;
+      margin: 1rem auto;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
     .letter {
+      max-height: 80vh;
       overflow-y: auto;
       overflow-x: hidden;
       word-wrap: break-word;
-      max-height: 100%;
+      padding: 1rem;
+      border: 2px solid #f2c2d9;
+      border-radius: 10px;
+      background: #fff0f6;
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
+      font-size: 1.1rem;
+      line-height: 1.4;
     }
+
     .typewriter-text {
       display: block;
       white-space: normal;
@@ -26,6 +47,38 @@
       border-right: none;
       animation: typing 2.5s steps(40, end) forwards;
     }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #d1477e;
+    }
+
+    button#secretBtn {
+      margin-top: 1rem;
+      padding: 0.8rem 1.2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #f48fb1;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button#secretBtn:hover {
+      background-color: #d1477e;
+    }
+
+    .hidden {
+      display: none;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #a02a5a;
+    }
+
+    /* Corazones animados */
     .heart {
       position: absolute;
       width: 20px;
@@ -64,24 +117,46 @@
         transform: translateX(-30px) scale(1.2) rotate(-45deg);
       }
     }
+
+    /* Media Queries para celular */
+    @media (max-width: 480px) {
+      .container {
+        max-width: 95vw;
+        padding: 0.5rem;
+      }
+
+      .letter {
+        font-size: 1rem;
+        max-height: 70vh;
+        padding: 0.8rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      button#secretBtn {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Audio de fondo -->
   <audio id="bg-music" autoplay loop muted>
-    <source src="audio/mi-lofi.mp3" type="audio/mpeg">
+    <source src="audio/mi-lofi.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5.
   </audio>
 
   <script>
-    
     document.addEventListener('click', function () {
       const audio = document.getElementById('bg-music');
       audio.muted = false;
       audio.play();
     }, { once: true });
 
-    
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
@@ -93,7 +168,7 @@
     setInterval(createHeart, 300);
   </script>
 
-   <div class="container">
+  <div class="container">
     <div class="envelope" id="envelope">
       <div class="flap"></div>
       <div class="letter" id="letter">
@@ -119,5 +194,20 @@
 
   <script src="script.js"></script>
   <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+  <script>
+    // Mostrar mensaje secreto al dar click
+    const secretBtn = document.getElementById('secretBtn');
+    const secretMsg = document.getElementById('secretMessage');
+    secretBtn.addEventListener('click', () => {
+      if (secretMsg.classList.contains('hidden')) {
+        secretMsg.classList.remove('hidden');
+        secretBtn.textContent = "Ya me quieres más, verdad? 🥹";
+      } else {
+        secretMsg.classList.add('hidden');
+        secretBtn.textContent = "Haz clic si también me quieres (poquito aunque sea :)";
+      }
+    });
+  </script>
 </body>
 </html>

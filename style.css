@@ -11,7 +11,6 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
-  touch-action: manipulation;
 }
 
 .container {
@@ -29,23 +28,12 @@ body {
   position: relative;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: transform 1s ease-in-out;
+  transition: transform 1s;
   transform-style: preserve-3d;
-  animation: floaty 3s ease-in-out infinite;
-}
-
-@keyframes floaty {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .envelope.open {
   transform: rotateX(-180deg);
-  animation: none;
 }
 
 .flap {
@@ -90,23 +78,24 @@ body {
   color: #C679B1;
 }
 
-.typewriter-text {
-  display: inline-block;
-  font-size: 1em;
-  border-right: 0.15em solid #C679B1;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+  animation-delay: 1s;
+  margin: 1em 0;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+.fade-in:nth-child(2) {
+  animation-delay: 2s;
+}
+.fade-in:nth-child(3) {
+  animation-delay: 3s;
 }
 
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #C679B1; }
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 button {
@@ -133,20 +122,10 @@ button:hover {
 }
 
 #secretMessage img {
-  max-width: 120px;
+  max-width: 80px;
   margin-top: 0.5em;
 }
 
 .hidden {
   display: none;
-}
-
-@media (max-width: 500px) {
-  .container {
-    width: 90vw;
-    height: auto;
-  }
-  .letter {
-    font-size: 0.9em;
-  }
 }
