@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Carta para mi Di 💌</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      position: relative;
+      overflow: hidden;
+    }
+    .letter {
+      overflow-y: auto;
+      overflow-x: hidden;
+      word-wrap: break-word;
+      max-height: 100%;
+    }
+    .typewriter-text {
+      display: block;
+      white-space: normal;
+      width: 100%;
+      border-right: none;
+      animation: typing 2.5s steps(40, end) forwards;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50% 50% 0 0;
+      transform: rotate(-45deg);
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
+    }
+    .heart::after, .heart::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        bottom: -20px;
+        opacity: 0.8;
+        transform: translateX(0) scale(1) rotate(-45deg);
+      }
+      100% {
+        bottom: 120vh;
+        opacity: 0;
+        transform: translateX(-30px) scale(1.2) rotate(-45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Audio de fondo -->
+  <audio id="bg-music" autoplay loop muted>
+    <source src="audio/mi-lofi.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <script>
+    
+    document.addEventListener('click', function () {
+      const audio = document.getElementById('bg-music');
+      audio.muted = false;
+      audio.play();
+    }, { once: true });
+
+    
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+   <div class="container">
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+      <div class="letter" id="letter">
+        <h1>Para ti, mi pollita 💖</h1>
+        <p class="typewriter-text">Holis amor, a veces no se como decirte lo qu esiento por ti...</p>
+        <p class="typewriter-text">Y luego recuerdo que ya lo sabes con solo verme 😌</p>
+        <p class="typewriter-text">Cuando no estas siento un gran vacio, siento que me falta parte de mi ser</p>
+        <p class="typewriter-text">Te pienso incluso cuando no quiero pensar, y eso ya debería decir mucho, no lo crees?</p>
+        <p class="typewriter-text">Tu risa que tanto AMO Y tus enojos... bueno, tambien te ves hermosa.</p>
+        <p class="typewriter-text">No es por exagerar, pero si existiera un premio a la persona que mas me hace sentir bonito, te lo llevabas diario.</p>
+        <p class="typewriter-text">Y si esta carta fuera infinita, igual no alcanzaría a contarte todo lo que me haces sentir amor</p>
+        <p class="typewriter-text">Gracias por existir, mi Di. Eres la definicion de arte en forma de persona. 🥹</p>
+        <button id="secretBtn">Haz clic si también me quieres (poquito aunque sea :)</button>
+        <div id="secretMessage" class="hidden">
+          <p>jiiji ya sabia que me querias, solo para comprobar... TE AMO 🫶</p>
+          <div class="tenor-gif-embed" data-postid="9405400945719218054" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+            <a href="https://tenor.com/view/bubu-dudu-sseeyall-gif-9405400945719218054">Bubu Dudu Sseeyall Sticker</a> from <a href="https://tenor.com/search/bubu+dudu-stickers">Bubu Dudu Stickers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</body>
+</html>
